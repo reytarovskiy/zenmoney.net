@@ -84,7 +84,7 @@ namespace Zenmoney.Tests
 
             var body = httpRequest.Content.ReadAsStringAsync().Result;
 
-            var expectedObject = new { CurrentClientTimestamp = 1000, LastServerTimestamp = 1005 };
+            var expectedObject = new { currentClientTimestamp = 1000, lastServerTimestamp = 1005 };
             var expectedJson = JsonConvert.SerializeObject(expectedObject, Formatting.None);
 
             Assert.Equal(expectedJson, body);
