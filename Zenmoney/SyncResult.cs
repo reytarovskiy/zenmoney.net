@@ -5,6 +5,7 @@ namespace Zenmoney
 {
     public class SyncResult
     {
+        public int ServerTimestamp { get; set; }
         public List<Instrument> Instrument { get; set; }
         public List<Company> Company { get; set; }
         public List<Account> Account { get; set; }
