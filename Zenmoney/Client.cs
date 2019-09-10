@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Zenmoney
 {
@@ -23,7 +24,9 @@ namespace Zenmoney
 
             var content = await response.Content.ReadAsStringAsync();
 
-            return new SyncResult();
+            var syncResult = JsonConvert.DeserializeObject<SyncResult>(content);
+
+            return syncResult;
         }
     }
 }
