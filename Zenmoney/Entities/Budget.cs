@@ -6,8 +6,8 @@ namespace Zenmoney.Entities
         public int Changed { get; set; }
         public string Date { get; set; }
         public string Tag { get; set; }
-        public int Income { get; set; }
-        public int Outcome { get; set; }
+        public double Income { get; set; }
+        public double Outcome { get; set; }
         public bool IncomeLock { get; set; }
         public bool OutcomeLock { get; set; }
     }
