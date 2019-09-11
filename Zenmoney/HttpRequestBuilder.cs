@@ -53,12 +53,7 @@ namespace Zenmoney
 
         public static HttpRequestMessage CreateFromRequest(string url, Request request)
         {
-            var contractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() };
-            var jsonSettings = new JsonSerializerSettings{ 
-                ContractResolver = contractResolver,
-                Formatting = Formatting.None
-            };
-            var body = JsonConvert.SerializeObject(request, jsonSettings);
+            var body = JsonConvert.SerializeObject(request, ZenmoneyJsonSettings.ZenmoneyRequestJsonSerializeSetting);
 
             var httpRequest = HttpRequestBuilder.Create(url)
                 .SetAuthToken(request.AuthToken)
