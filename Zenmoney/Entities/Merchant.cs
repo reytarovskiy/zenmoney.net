@@ -1,3 +1,7 @@
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Zenmoney.Entities 
 {
     public class Merchant
@@ -5,6 +9,8 @@ namespace Zenmoney.Entities
         public string Id { get; set; }
         public int User { get; set; }
         public string Title { get; set; }
-        public int Changed { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Changed { get; set; }
     }
 }

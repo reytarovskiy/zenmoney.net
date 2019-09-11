@@ -1,10 +1,16 @@
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Zenmoney.Entities
 {
     public class Tag
     {
         public string Id { get; set; }
         public int User { get; set; }
-        public int Changed { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Changed { get; set; }
         public string Icon { get; set; }
         public bool BudgetIncome { get; set; }
         public bool BudgetOutcome { get; set; }

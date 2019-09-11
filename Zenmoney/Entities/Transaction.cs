@@ -1,3 +1,7 @@
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Zenmoney.Entities
 {
     public class Transaction
@@ -7,10 +11,14 @@ namespace Zenmoney.Entities
         public string Date { get; set; }
         public double Income { get; set; }
         public double Outcome { get; set; }
-        public int Changed { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Changed { get; set; }
         public int IncomeInstrument { get; set; }
         public int OutcomeInstrument { get; set; }
-        public int Created { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Created { get; set; }
         public string OriginalPayee { get; set; }
         public bool Deleted { get; set; }
         public bool Viewed { get; set; }

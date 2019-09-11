@@ -1,3 +1,7 @@
+using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Zenmoney.Entities
 {
     public class Account
@@ -12,7 +16,6 @@ namespace Zenmoney.Entities
         public string Title { get; set; }
         public bool InBalance { get; set; }
         public double? CreditLimit { get; set; }
-        
         public double? StartBalance { get; set; }
         public double? Balance { get; set; }
         public int? Company { get; set; }
@@ -21,7 +24,9 @@ namespace Zenmoney.Entities
         public string StartDate { get; set; }
         public bool? Capitalization { get; set; }
         public double? Percent { get; set; }
-        public int Changed { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        public DateTime Changed { get; set; }
         public string[] SyncID { get; set; }
         public bool EnableSMS { get; set; }
         public int? EndDateOffset { get; set; }
