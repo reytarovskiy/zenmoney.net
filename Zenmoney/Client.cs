@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Zenmoney
 {
@@ -24,7 +25,7 @@ namespace Zenmoney
 
             var content = await response.Content.ReadAsStringAsync();
 
-            var syncResult = JsonConvert.DeserializeObject<SyncResult>(content);
+            var syncResult = JsonConvert.DeserializeObject<SyncResult>(content, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" });
 
             return syncResult;
         }

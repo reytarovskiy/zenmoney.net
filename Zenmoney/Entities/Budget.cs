@@ -10,7 +10,7 @@ namespace Zenmoney.Entities
 
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime Changed { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Tag { get; set; }
         public double Income { get; set; }
         public double Outcome { get; set; }

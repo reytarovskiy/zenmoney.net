@@ -8,7 +8,7 @@ namespace Zenmoney.Entities
     {
         public string Id { get; set; }
         public int User { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public double Income { get; set; }
         public double Outcome { get; set; }
 

@@ -21,7 +21,7 @@ namespace Zenmoney.Entities
         public int? Company { get; set; }
         public bool Archive { get; set; }
         public bool EnableCorrection { get; set; }
-        public string StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         public bool? Capitalization { get; set; }
         public double? Percent { get; set; }
 
