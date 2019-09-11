@@ -1,7 +1,10 @@
+using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Zenmoney.Exceptions;
 
 namespace Zenmoney
 {
@@ -23,11 +26,19 @@ namespace Zenmoney
 
             var response = await this.httpClient.SendAsync(httpRequest);
 
-            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+                this.handleError(response);
 
+            var content = await response.Content.ReadAsStringAsync();
             var syncResult = JsonConvert.DeserializeObject<SyncResult>(content, new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" });
 
             return syncResult;
+        }
+
+        private void handleError(HttpResponseMessage response)
+        {
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                throw new UnauthorizedException();
         }
     }
 }
