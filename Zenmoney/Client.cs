@@ -39,6 +39,8 @@ namespace Zenmoney
         {
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 throw new UnauthorizedException();
+
+            throw new UndefinedException();
         }
     }
 }
