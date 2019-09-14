@@ -17,6 +17,16 @@ namespace Zenmoney
 
         public List<Entities.Type> ForceFetch { get; set; } = new List<Entities.Type>();
 
+        public List<Account> Account { get; set; } = new List<Account>();
+
+        public List<Budget> Budget { get; set; } = new List<Budget>();
+
+        public List<Merchant> Merchant { get; set; } = new List<Merchant>();
+
+        public List<Tag> Tag { get; set; } = new List<Tag>();
+
+        public List<Transaction> Transaction { get; set; } = new List<Transaction>(); 
+
         public Request() { }
 
         public Request(string authToken, Int32 currentTimestamp, Int32 lastServerTimestamp)
@@ -29,6 +39,31 @@ namespace Zenmoney
         public bool ShouldSerializeForceFetch()
         {
             return this.ForceFetch.Count != 0;
+        }
+
+        public bool ShouldSerializeAccount()
+        {
+            return this.Account.Count != 0;
+        }
+
+        public bool ShouldSerializeBudget()
+        {
+            return this.Budget.Count != 0;
+        }
+
+        public bool ShouldSerializeMerchant()
+        {
+            return this.Merchant.Count != 0;
+        }
+
+        public bool ShouldSerializeTag()
+        {
+            return this.Tag.Count != 0;
+        }
+
+        public bool ShouldSerializeTransaction()
+        {
+            return this.Transaction.Count != 0;
         }
     }
 }
