@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Zenmoney</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.0-alpha</Version>
     <Author>Anton Reytarovskiy</Author>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
