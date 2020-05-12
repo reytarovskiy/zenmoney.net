@@ -69,25 +69,5 @@ namespace Zenmoney.Tests
 
             Assert.Equal(json, body);
         }
-
-        [Fact]
-        public void TestTimestampIsSetByRequest()
-        {
-            var request = new Request
-            {
-                AuthToken = "token",
-                CurrentClientTimestamp = 1000,
-                LastServerTimestamp = 1005
-            };
-
-            var httpRequest = HttpRequestBuilder.CreateFromRequest("http://test.url/", request);
-
-            var body = httpRequest.Content.ReadAsStringAsync().Result;
-
-            var expectedObject = new { currentClientTimestamp = 1000, lastServerTimestamp = 1005 };
-            var expectedJson = JsonConvert.SerializeObject(expectedObject, Formatting.None);
-
-            Assert.Equal(expectedJson, body);
-        }
     }
 }

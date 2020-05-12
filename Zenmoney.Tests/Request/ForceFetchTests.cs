@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Xunit;
+using Zenmoney.Serializer;
 
 namespace Zenmoney.Tests
 {
@@ -12,7 +13,9 @@ namespace Zenmoney.Tests
 
             request.ForceFetch.Add(Entities.Type.Account);
 
-            var json = JsonConvert.SerializeObject(request, ZenmoneyJsonSettings.ZenmoneyRequestJsonSerializeSetting);
+            var serializer = new NewtonsoftSerializer();
+
+            var json = serializer.SerializeRequest(request);
 
             var expectedObject = new
             {
@@ -30,7 +33,9 @@ namespace Zenmoney.Tests
         {
             var request = new Request("token", 100, 200);
 
-            var json = JsonConvert.SerializeObject(request, ZenmoneyJsonSettings.ZenmoneyRequestJsonSerializeSetting);
+            var serializer = new NewtonsoftSerializer();
+
+            var json = serializer.SerializeRequest(request);
             
             var expectedObject = new
             {

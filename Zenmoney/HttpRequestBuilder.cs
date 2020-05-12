@@ -50,17 +50,5 @@ namespace Zenmoney
         {
             return new HttpRequestBuilder(url);
         }
-
-        public static HttpRequestMessage CreateFromRequest(string url, Request request)
-        {
-            var body = JsonConvert.SerializeObject(request, ZenmoneyJsonSettings.ZenmoneyRequestJsonSerializeSetting);
-
-            var httpRequest = HttpRequestBuilder.Create(url)
-                .SetAuthToken(request.AuthToken)
-                .SetBody(body)
-                .Build();
-
-            return httpRequest;
-        }
     }
 }
