@@ -1,14 +1,14 @@
-using System;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+
+[assembly: InternalsVisibleTo("Zenmoney.Tests")]
 
 namespace Zenmoney
 {
-    public class HttpRequestBuilder
+    internal class HttpRequestBuilder
     {
         private string authToken;
         private string url;
