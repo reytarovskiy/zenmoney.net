@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Zenmoney.Errors;
 
 namespace Zenmoney.Serializer
 {
@@ -9,5 +10,7 @@ namespace Zenmoney.Serializer
         string SerializeRequest(Request request);
 
         SyncResult DeserializeSyncResult(string json);
+
+        ValidationError DeserializeValidationError(string json);
     }
 }

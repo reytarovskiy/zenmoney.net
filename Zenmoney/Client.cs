@@ -30,17 +30,22 @@ namespace Zenmoney
             var response = await httpClient.SendAsync(httpRequest);
 
             if (!response.IsSuccessStatusCode)
-                HandleError(response);
+                await HandleError(response);
 
             var json = await response.Content.ReadAsStringAsync();
 
             return serializer.DeserializeSyncResult(json);
         }
 
-        private void HandleError(HttpResponseMessage response)
+        private async Task HandleError(HttpResponseMessage response)
         {
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 throw new UnauthorizedException();
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                throw new ValidationException(serializer.DeserializeValidationError(json));
 
             throw new UndefinedException();
         }

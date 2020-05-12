@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <PackageId>Zenmoney</PackageId>
-    <Version>2.0.0-alpha</Version>
+    <Version>2.1.0-alpha</Version>
     <Author>Anton Reytarovskiy</Author>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
