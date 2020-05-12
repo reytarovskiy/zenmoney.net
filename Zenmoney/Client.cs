@@ -42,12 +42,12 @@ namespace Zenmoney
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 throw new UnauthorizedException();
 
-            var json = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync();
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
-                throw new ValidationException(serializer.DeserializeValidationError(json));
+                throw new ValidationException(serializer.DeserializeValidationError(content));
 
-            throw new UndefinedException();
+            throw new UndefinedException(content);
         }
     }
 }
