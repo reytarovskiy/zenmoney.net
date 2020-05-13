@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -12,17 +13,18 @@ namespace Zenmoney.Tests
         [Fact]
         public void TestUrlIsSet()
         {
-            var url = "http://test.url/";
+            var url = new Uri("http://test.url/");
             var request = HttpRequestBuilder.Create(url)
                 .Build();
 
-            Assert.Equal(url, request.RequestUri.ToString());
+            Assert.Equal(url.ToString(), request.RequestUri.ToString());
         }
 
         [Fact]
         public void TestMethodIsSet()
         {
-            var request = HttpRequestBuilder.Create("http://test.url/")
+            var url = new Uri("http://test.url/");
+            var request = HttpRequestBuilder.Create(url)
                 .Build();
 
             Assert.Equal(HttpMethod.Post, request.Method);
@@ -31,7 +33,8 @@ namespace Zenmoney.Tests
         [Fact]
         public void TestContentTypeIsSet()
         {
-            var request = HttpRequestBuilder.Create("http://test.url/")
+            var url = new Uri("http://test.url/");
+            var request = HttpRequestBuilder.Create(url)
                 .SetBody("content")
                 .Build();
 
@@ -46,7 +49,8 @@ namespace Zenmoney.Tests
         {
             var token = "my-test-token";
 
-            var request = HttpRequestBuilder.Create("http://test.url/")
+            var url = new Uri("http://test.url/");
+            var request = HttpRequestBuilder.Create(url)
                 .SetAuthToken(token)
                 .Build();
 
@@ -61,7 +65,8 @@ namespace Zenmoney.Tests
                 'LastServerTimestamp': 1567541309
             }";
 
-            var request = HttpRequestBuilder.Create("http://test.url/")
+            var url = new Uri("http://test.url/");
+            var request = HttpRequestBuilder.Create(url)
                 .SetBody(json)
                 .Build();
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -27,7 +28,7 @@ namespace Zenmoney.Entities
 
         [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime Changed { get; set; }
-        public string[] SyncID { get; set; }
+        public List<string> SyncID { get; }
         public bool EnableSMS { get; set; }
         public int? EndDateOffset { get; set; }
         public string EndDateOffsetInterval { get; set; }

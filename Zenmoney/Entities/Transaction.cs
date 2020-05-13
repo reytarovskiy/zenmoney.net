@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -26,7 +27,7 @@ namespace Zenmoney.Entities
         public string QrCode { get; set; }
         public string IncomeAccount { get; set; }
         public string OutcomeAccount { get; set; }
-        public string[] Tag { get; set; }
+        public List<string> Tag { get; } = new List<string>();
         public string Comment { get; set; }
         public string Payee { get; set; }
         public double? OpIncome { get; set; }

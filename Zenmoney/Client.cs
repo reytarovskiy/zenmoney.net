@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -6,33 +7,38 @@ using Zenmoney.Serializer;
 
 namespace Zenmoney
 {
-    public class Client
+    public sealed class Client : IDisposable
     {
         private readonly ISerializer serializer;
-        private readonly string url;
+        private readonly Uri url;
         private readonly HttpClient httpClient;
 
-        public Client(ISerializer serializer, string url = "http://api.zenmoney.ru/v8/diff/")
+        public Client(ISerializer serializer, Uri url = null)
         {
             this.serializer = serializer;
-            this.url = url;
+            this.url = url ?? new Uri("http://api.zenmoney.ru/v8/diff/");
 
-            this.httpClient = new HttpClient();
+            httpClient = new HttpClient();
         }
 
         public async Task<SyncResult> Sync(Request request)
         {
-            var httpRequest = HttpRequestBuilder.Create(url)
-                .SetAuthToken(request.AuthToken)
-                .SetBody(serializer.SerializeRequest(request))
-                .Build();
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
 
-            var response = await httpClient.SendAsync(httpRequest);
+            var httpRequestBuilder = HttpRequestBuilder.Create(url)
+                .SetAuthToken(request.AuthToken)
+                .SetBody(serializer.SerializeRequest(request));
+
+            using var httpRequest = httpRequestBuilder.Build();
+            var response = await httpClient.SendAsync(httpRequest).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
-                await HandleError(response);
+                await HandleError(response).ConfigureAwait(true);
 
-            var json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return serializer.DeserializeSyncResult(json);
         }
@@ -42,12 +48,17 @@ namespace Zenmoney
             if (response.StatusCode == HttpStatusCode.Unauthorized)
                 throw new UnauthorizedException();
 
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 throw new ValidationException(serializer.DeserializeValidationError(content));
 
             throw new UndefinedException(content);
+        }
+
+        public void Dispose()
+        {
+            httpClient.Dispose();
         }
     }
 }

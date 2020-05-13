@@ -9,23 +9,23 @@ namespace Zenmoney
     public class Request
     {
         [JsonIgnore]
-        public string AuthToken { get; set; }
+        public string AuthToken { get; }
 
-        public Int32 CurrentClientTimestamp { get; set; }
+        public Int32 CurrentClientTimestamp { get; }
 
-        public Int32 LastServerTimestamp { get; set; }
+        public Int32 LastServerTimestamp { get; }
 
-        public List<Entities.Type> ForceFetch { get; set; } = new List<Entities.Type>();
+        public List<Entities.Type> ForceFetch { get; } = new List<Entities.Type>();
 
-        public List<Account> Account { get; set; } = new List<Account>();
+        public List<Account> Account { get; } = new List<Account>();
 
-        public List<Budget> Budget { get; set; } = new List<Budget>();
+        public List<Budget> Budget { get; } = new List<Budget>();
 
-        public List<Merchant> Merchant { get; set; } = new List<Merchant>();
+        public List<Merchant> Merchant { get; } = new List<Merchant>();
 
-        public List<Tag> Tag { get; set; } = new List<Tag>();
+        public List<Tag> Tag { get; } = new List<Tag>();
 
-        public List<Transaction> Transaction { get; set; } = new List<Transaction>(); 
+        public List<Transaction> Transaction { get; } = new List<Transaction>(); 
 
         public Request() { }
 
