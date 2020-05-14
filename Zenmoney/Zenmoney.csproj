@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>Zenmoney.Api</Title>
     <PackageId>Zenmoney</PackageId>
-    <Version>3.0.0-alpha</Version>
+    <Version>3.1.0-alpha</Version>
     <Author>Anton Reytarovskiy</Author>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RepositoryUrl>https://github.com/reytarovskiy/zenmoney.net</RepositoryUrl>
