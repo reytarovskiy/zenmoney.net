@@ -22,6 +22,10 @@ namespace Zenmoney.Entities
         [EnumMember(Value = "tag")]
         Tag,
         [EnumMember(Value = "transaction")]
-        Transaction
+        Transaction,
+        [EnumMember(Value = "reminder")]
+        Reminder,
+        [EnumMember(Value = "reminderMarker")]
+        ReminderMarker
     }
 }
