@@ -4,12 +4,12 @@ using System.Text;
 using Xunit;
 using Zenmoney.Serializer;
 
-namespace Zenmoney.Tests.Serializers
+namespace Zenmoney.Tests.Serializers.Newtonsoft
 {
-    public class NewtonsoftSerializerTests
+    public class ValidationErrorDeserializationTests
     {
         [Fact]
-        public void TestDeserializeValidationError()
+        public void TestValidationError()
         {
             var json = @"{
                 'error': {
