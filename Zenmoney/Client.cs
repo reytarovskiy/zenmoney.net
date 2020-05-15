@@ -10,15 +10,15 @@ namespace Zenmoney
     public sealed class Client : IDisposable
     {
         private readonly ISerializer serializer;
-        private readonly Uri url;
+
+        private readonly Uri url = new Uri("http://api.zenmoney.ru/v8/diff/");
+        
         private readonly HttpClient httpClient;
 
-        public Client(ISerializer serializer, Uri url = null)
+        public Client(HttpClient httpClient, ISerializer serializer)
         {
             this.serializer = serializer;
-            this.url = url ?? new Uri("http://api.zenmoney.ru/v8/diff/");
-
-            httpClient = new HttpClient();
+            this.httpClient = httpClient;
         }
 
         public async Task<SyncResult> Sync(Request request)
