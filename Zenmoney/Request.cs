@@ -27,6 +27,8 @@ namespace Zenmoney
 
         public List<Deletion> Deletion { get; } = new List<Deletion>();
 
+        public List<Reminder> Reminder { get; } = new List<Reminder>();
+
         public Request() { }
 
         public Request(string authToken, int currentTimestamp, int lastServerTimestamp)
@@ -36,39 +38,20 @@ namespace Zenmoney
             LastServerTimestamp = lastServerTimestamp;
         }
 
-        public bool ShouldSerializeForceFetch()
-        {
-            return ForceFetch.Count != 0;
-        }
+        public bool ShouldSerializeForceFetch() => ForceFetch.Count > 0;
 
-        public bool ShouldSerializeAccount()
-        {
-            return Account.Count != 0;
-        }
+        public bool ShouldSerializeAccount() => Account.Count > 0;
 
-        public bool ShouldSerializeBudget()
-        {
-            return Budget.Count != 0;
-        }
+        public bool ShouldSerializeBudget() => Budget.Count > 0;
 
-        public bool ShouldSerializeMerchant()
-        {
-            return Merchant.Count != 0;
-        }
+        public bool ShouldSerializeMerchant() => Merchant.Count > 0;
 
-        public bool ShouldSerializeTag()
-        {
-            return Tag.Count != 0;
-        }
+        public bool ShouldSerializeTag() => Tag.Count > 0;
 
-        public bool ShouldSerializeTransaction()
-        {
-            return Transaction.Count != 0;
-        }
+        public bool ShouldSerializeTransaction() => Transaction.Count > 0;
 
-        public bool ShouldSerializeDeletion()
-        {
-            return Deletion.Count != 0;
-        }
+        public bool ShouldSerializeDeletion() => Deletion.Count > 0;
+
+        public bool ShouldSerializeReminder() => Reminder.Count > 0;
     }
 }
