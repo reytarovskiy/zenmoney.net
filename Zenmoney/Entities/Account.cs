@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -7,10 +8,48 @@ namespace Zenmoney.Entities
 {
     public class Account
     {
+        public enum AccountType
+        {
+            [EnumMember(Value = "cash")]
+            Cash = 1,
+            [EnumMember(Value = "ccard")]
+            Ccard,
+            [EnumMember(Value = "checking")]
+            Checking,
+            [EnumMember(Value = "loan")]
+            Loan,
+            [EnumMember(Value = "deposit")]
+            Deposit,
+            [EnumMember(Value = "emoney")]
+            Emoney,
+            [EnumMember(Value = "debt")]
+            Debt
+        }
+
+        public enum OffsetInterval
+        {
+            [EnumMember(Value = "day")]
+            Day,
+            [EnumMember(Value = "week")]
+            Week,
+            [EnumMember(Value = "month")]
+            Month,
+            [EnumMember(Value = "year")]
+            Year,
+        }
+
+        public enum PayInterval
+        {
+            [EnumMember(Value = "month")]
+            Month,
+            [EnumMember(Value = "year")]
+            Year,
+        }
+
         public string Id { get; set; }
         public int? User { get; set; }
         public int? Instrument { get; set; }
-        public string Type { get; set; }
+        public AccountType Type { get; set; }
         public int? Role { get; set; }
         public bool Private { get; set; }
         public bool? Savings { get; set; }
@@ -31,7 +70,7 @@ namespace Zenmoney.Entities
         public List<string> SyncID { get; }
         public bool EnableSMS { get; set; }
         public int? EndDateOffset { get; set; }
-        public string EndDateOffsetInterval { get; set; }
+        public OffsetInterval? EndDateOffsetInterval { get; set; }
         public int? PayoffStep { get; set; }
         public string PayoffInterval { get; set; }
     }

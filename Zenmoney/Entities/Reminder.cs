@@ -2,11 +2,24 @@
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Zenmoney.Entities
 {
     public class Reminder
     {
+        public enum ReminderInterval
+        {
+            [EnumMember(Value = "day")]
+            Day,
+            [EnumMember(Value = "week")]
+            Week,
+            [EnumMember(Value = "month")]
+            Month,
+            [EnumMember(Value = "year")]
+            Year,
+        }
+
         public Guid Id { get; set; }
         public int User { get; set; }
         public double Income { get; set; }
