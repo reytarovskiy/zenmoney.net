@@ -29,6 +29,8 @@ namespace Zenmoney
 
         public List<Reminder> Reminder { get; } = new List<Reminder>();
 
+        public List<ReminderMarker> ReminderMarker { get; } = new List<ReminderMarker>();
+
         public Request() { }
 
         public Request(string authToken, int currentTimestamp, int lastServerTimestamp)
@@ -53,5 +55,7 @@ namespace Zenmoney
         public bool ShouldSerializeDeletion() => Deletion.Count > 0;
 
         public bool ShouldSerializeReminder() => Reminder.Count > 0;
+
+        public bool ShouldSerializeReminderMarker() => ReminderMarker.Count > 0;
     }
 }

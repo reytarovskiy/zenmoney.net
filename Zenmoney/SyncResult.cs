@@ -16,5 +16,6 @@ namespace Zenmoney
         public List<Transaction> Transaction { get; } = new List<Transaction>();
         public List<Deletion> Deletion { get; } = new List<Deletion>();
         public List<Reminder> Reminder { get; } = new List<Reminder>();
+        public List<ReminderMarker> ReminderMarker { get; } = new List<ReminderMarker>();
     }
 }
