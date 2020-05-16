@@ -14,7 +14,12 @@ namespace Zenmoney.Serializer
         private readonly JsonSerializerSettings RequestSerializeSettings = new JsonSerializerSettings
         {
             ContractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() },
-            Formatting = Formatting.None
+            Formatting = Formatting.None,
+            Converters = new List<JsonConverter>() 
+            { 
+                new StringEnumConverter(),
+                new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd" }
+            }
         };
 
         public SyncResult DeserializeSyncResult(string json)

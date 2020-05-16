@@ -47,7 +47,7 @@ namespace Zenmoney.Entities
         }
 
         public string Id { get; set; }
-        public int? User { get; set; }
+        public int User { get; set; }
         public int? Instrument { get; set; }
         public AccountType Type { get; set; }
         public int? Role { get; set; }
@@ -66,12 +66,12 @@ namespace Zenmoney.Entities
         public double? Percent { get; set; }
 
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime Changed { get; set; }
-        public List<string> SyncID { get; }
+        public DateTime? Changed { get; set; }
+        public List<string> SyncID { get; set; }
         public bool EnableSMS { get; set; }
         public int? EndDateOffset { get; set; }
         public OffsetInterval? EndDateOffsetInterval { get; set; }
         public int? PayoffStep { get; set; }
-        public string PayoffInterval { get; set; }
+        public PayInterval? PayoffInterval { get; set; }
     }
 }
