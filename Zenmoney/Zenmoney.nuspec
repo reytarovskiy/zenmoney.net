@@ -11,7 +11,7 @@
     <iconUrl>https://support.zenmoney.ru/s/cache/b6/70/b6708ae2d5952f0462fb36e6caea01fe.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Zenmoney.NET lib for Zenmoney diff api</description>
-    <releaseNotes>Maked 3.0.0-alpha version</releaseNotes>
+    <releaseNotes>Release first version</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>zenmoney</tags>
   </metadata>
